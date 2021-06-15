@@ -122,5 +122,62 @@ namespace CafeCaspian.Services
             // Assert
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void BillService_CalculateTip_ShouldReturn_TwoPointDecimal_With_CorrectTip_ByPercentPassedIn()
+        {
+            // Arrange
+            var customerBill = new Bill
+            {
+                ItemTotal = 6.00M,
+                Items = new List<MenuItem>
+                {
+                    new MenuItem
+                    {
+                        Name = "Cola",
+                        Price = 0.50M,
+                    },
+                    new MenuItem
+                    {
+                        Name = "Coffee",
+                        Price = 1.00M
+                    },
+                    new MenuItem
+                    {
+                        Name = "Steak Sandwich",
+                        Price = 4.50M
+                    }
+                }
+            };
+
+            const decimal expected = 0.60M;
+            const int tipPercent = 10;
+
+            // Act
+            var result = _billService.CalculateTip(customerBill, tipPercent);
+
+            // Assert
+            Assert.Equal(expected, result, 2);
+        }
+
+        [Fact]
+        public void BillService_CalculateTip_ShouldReturn_ZeroDecimal_WhenNoItemInBill_ByPercentPassedIn()
+        {
+            // Arrange
+            var customerBill = new Bill
+            {
+                ItemTotal = 0.00M,
+                Items = new List<MenuItem>()
+            };
+
+            const decimal expected = 0.00M;
+            const int tipPercent = 10;
+
+            // Act
+            var result = _billService.CalculateTip(customerBill, tipPercent);
+
+            // Assert
+            Assert.Equal(expected, result, 2);
+        }
     }
 }
