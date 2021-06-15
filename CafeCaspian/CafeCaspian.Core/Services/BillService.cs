@@ -11,5 +11,10 @@ namespace CafeCaspian.Services
         {
             return Math.Round(customerBill.Items.Select(x => x.Price).Sum());
         }
+
+        public decimal CalculateTip(Bill customerBill, decimal tipPercent)
+        {
+            return customerBill.ItemTotal * (tipPercent / 100);
+        }
     }
 }
