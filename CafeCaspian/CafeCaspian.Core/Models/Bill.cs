@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using CafeCaspian.Models;
 
-namespace CafeCaspian.Services
+namespace CafeCaspian.Models
 {
     public class Bill
     {

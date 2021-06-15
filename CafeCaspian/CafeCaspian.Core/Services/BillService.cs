@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Linq;
+using CafeCaspian.Interfaces;
+using CafeCaspian.Models;
 
 namespace CafeCaspian.Services
 {
-    public class BillService
+    public class BillService : IBillService
     {
         public decimal CalculateTotalItemPrice(Bill customerBill)
         {

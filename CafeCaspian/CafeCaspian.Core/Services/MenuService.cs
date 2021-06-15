@@ -1,10 +1,11 @@
 ﻿using CafeCaspian.Enums;
 using CafeCaspian.Models;
 using System.Collections.Generic;
+using CafeCaspian.Interfaces;
 
 namespace CafeCaspian.Services
 {
-    public class MenuService
+    public class MenuService: IMenuService
     {
         public IList<MenuItem> GetMenu()
         {
