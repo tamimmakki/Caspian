@@ -1,4 +1,6 @@
-﻿namespace CafeCaspian.Services
+﻿using CafeCaspian.Enums;
+
+namespace CafeCaspian.Models
 {
     public class MenuItem
     {

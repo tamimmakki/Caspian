@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using CafeCaspian.Enums;
+using CafeCaspian.Models;
+using System.Collections.Generic;
 using Xunit;
 
 namespace CafeCaspian.Services
