@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CafeCaspian.Services
 {
@@ -6,7 +7,7 @@ namespace CafeCaspian.Services
     {
         public decimal CalculateTotalItemPrice(Bill customerBill)
         {
-            throw new NotImplementedException();
+            return Math.Round(customerBill.Items.Select(x => x.Price).Sum());
         }
     }
 }
