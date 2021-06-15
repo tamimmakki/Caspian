@@ -179,5 +179,80 @@ namespace CafeCaspian.Services
             // Assert
             Assert.Equal(expected, result, 2);
         }
+
+        [Fact]
+        public void BillService_CalculateTotalBill_ShouldReturn_BillObject_With_CorrectlyCalculated_Bill_IncludingAnyTip()
+        {
+            // Arrange
+            var expected = new Bill
+            {
+                Items = new List<MenuItem>
+                {
+                    new MenuItem
+                    {
+                        Id = 4,
+                        Name = "Steak Sandwich",
+                        Price = 4.50M,
+                        Category = Category.Food,
+                        IsHot = true
+                    }
+                },
+                ItemTotal = 4.50M,
+                Tip = 4.5M,
+                BillTotal = 9.00M
+            };
+
+            var customerBill = new Bill
+            {
+                Items = new List<MenuItem>
+                {
+                    new MenuItem
+                    {
+                        Id = 4,
+                        Name = "Steak Sandwich",
+                        Price = 4.50M,
+                        Category = Category.Food,
+                        IsHot = true
+                    }
+                },
+                ItemTotal = 4.50M,
+                Tip = 100M,
+                BillTotal = 9.00M
+            };
+
+            // Act
+            var result = _billService.CalculateTotalBill(customerBill, 100);
+
+            // Assert
+            Assert.Equal(expected.BillTotal, result.BillTotal);
+        }
+
+        [Fact]
+        public void BillService_CalculateTotalBill_ShouldReturn_BillObject_With_CorrectlyCalculated_Bill_WithNoItems_IncludingAnyTip()
+        {
+            // Arrange
+            var expected = new Bill
+            {
+                Items = new List<MenuItem>()
+                ,
+                ItemTotal = 0.00M,
+                Tip = 0.00M,
+                BillTotal = 0.00M
+            };
+
+            var customerBill = new Bill
+            {
+                Items = new List<MenuItem>(),
+                ItemTotal = 0.00M,
+                Tip = 0.00M,
+                BillTotal = 0.00M
+            };
+
+            // Act
+            var result = _billService.CalculateTotalBill(customerBill, 0);
+
+            // Assert
+            Assert.Equal(expected.BillTotal, result.BillTotal);
+        }
     }
 }

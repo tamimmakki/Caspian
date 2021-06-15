@@ -6,5 +6,6 @@ namespace CafeCaspian.Interfaces
     {
         decimal CalculateTotalItemPrice(Bill customerBill);
         decimal CalculateTip(Bill customerBill, decimal tipPercentage);
+        Bill CalculateTotalBill(Bill customerBill, decimal tipPercentage = 0);
     }
 }
